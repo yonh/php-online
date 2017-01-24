@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  app:
+    build: ./docker
+    ports:
+        - "7890:80"
+    image: yonh/php-online
+    restart: always
+    volumes:
+      - ./public:/www/html
+

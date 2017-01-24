@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bower/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <form id="form">
+        <textarea name="code" style="width:100%;" rows="15"></textarea>
+        <input type="button" onclick="run()" value="RUN" style="width:100px;font-size: 25px;" />
+        <div id="view">
+        </div>
+    </form>
+
+    <script>
+    function run() {
+        $.post('/run.php', $('#form').serialize(), function(data) {
+            console.log(data);
+            $("#view").html("<pre>" + data.result + "</pre>");
+        }, 'json');
+    }
+    </script>
+</body>
+</html>

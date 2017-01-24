@@ -1,0 +1,11 @@
+{
+    "name": "yonh/php-online",
+    "authors": [
+        {
+            "name": "yonh",
+            "email": "azssjli@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
