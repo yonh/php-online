@@ -6,9 +6,14 @@
     <script src="bower/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="static/css/public.css" />
 
+    <!--codemirror-->
     <link rel="stylesheet" href="bower/codemirror/lib/codemirror.css"/>
     <script src="bower/codemirror/lib/codemirror.js"></script>
     <script src="bower/codemirror/mode/php/php.js"></script>
+
+    <!--highlight-->
+    <link rel="stylesheet" href="bower/highlightjs/styles/default.css">
+    <script src="bower/highlightjs/highlight.pack.js"></script>
 </head>
 <body>
     <form id="form">
@@ -17,6 +22,14 @@
         <div id="view" class="gray_border hidden">
         </div>
     </form>
+
+    <div>
+        <pre><code class="php">
+            echo 1;
+            echo 2;
+            print_r('hello');
+        </code></pre>
+    </div>
 
     <script>
     function run() {
@@ -30,11 +43,8 @@
     }
     </script>
 
-
-
     <script type="text/javascript">
-        //    $(function(){
-        var mime="text/x-mysql";
+        var mime="text/x-php";
         window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
             mode: mime,
             indentWithTabs: true,
@@ -43,11 +53,18 @@
             matchBrackets : true,
             autofocus: true
         });
-        //    });
+
+
+        $(document).ready(function() {
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+
+
+
     </script>
 
 </body>
 </html>
-
-
 
