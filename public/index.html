@@ -4,22 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="bower/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="static/css/public.css" />
+
+    <link rel="stylesheet" href="bower/codemirror/lib/codemirror.css"/>
+    <script src="bower/codemirror/lib/codemirror.js"></script>
+    <script src="bower/codemirror/mode/php/php.js"></script>
 </head>
 <body>
     <form id="form">
-        <textarea name="code" style="width:100%;" rows="15"></textarea>
+        <div class="gray_border"><textarea id="code" name="code"></textarea></div><br/>
         <input type="button" onclick="run()" value="RUN" style="width:100px;font-size: 25px;" />
-        <div id="view">
+        <div id="view" class="gray_border hidden">
         </div>
     </form>
 
     <script>
     function run() {
-        $.post('/run.php', $('#form').serialize(), function(data) {
+        params = {'code':window.editor.getValue()};
+
+        $.post('/run.php', params, function(data) {
             console.log(data);
             $("#view").html("<pre>" + data.result + "</pre>");
+            $("#view").removeClass("hidden");
         }, 'json');
     }
     </script>
+
+
+
+    <script type="text/javascript">
+        //    $(function(){
+        var mime="text/x-mysql";
+        window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: mime,
+            indentWithTabs: true,
+            smartIndent: true,
+            lineNumbers: true,
+            matchBrackets : true,
+            autofocus: true
+        });
+        //    });
+    </script>
+
 </body>
 </html>
+
+
+
