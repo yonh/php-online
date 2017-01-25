@@ -6,7 +6,7 @@ $code_file = "/tmp/code.php";
 $stdout_file = "/tmp/stdout.log";
 $stderr_file = "/tmp/stderr.log";
 
-file_put_contents($code_file, "<?php" . PHP_EOL . $code . PHP_EOL);
+file_put_contents($code_file, $code);
 
 if ($code) {
 	$result = array('status'=>'success');
