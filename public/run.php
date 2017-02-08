@@ -1,6 +1,12 @@
 <?php
+require_once __DIR__ . "/functions.php";
 
-$code = @$_POST['code'];
+if (!isset($_POST['code']) || empty($_POST['code'])) {
+	$result = array('status'=>'failed', 'result'=>'please give me code!');
+	echo json_encode($result);
+}
+
+$code = $_POST['code'];
 
 $code_file = "/tmp/code.php";
 $stdout_file = "/tmp/stdout.log";

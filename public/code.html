@@ -44,20 +44,9 @@ key binding:<select id="keybinding" size="1" onchange="change_key_binding(this.v
     </div>
 </form>
 
-
-
+<script src="static/js/common.js"></script>
 
 <script>
-
-    function run() {
-        params = {'code':window.editor.getValue()};
-
-        $.post('/run.php', params, function(data) {
-            $("#view").html("<pre>" + data.result + "</pre>");
-            $("#view").removeClass("hidden");
-        }, 'json');
-    }
-
     ace.require("ace/ext/language_tools");
     var editor = ace.edit("code");
     editor.setOptions({

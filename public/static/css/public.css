@@ -1,2 +1,4 @@
 .gray_border {border:1px solid darkgray;}
 .hidden {display: none;}
+.failed {border:1px solid red;}
+#view{margin-top:5px;}
