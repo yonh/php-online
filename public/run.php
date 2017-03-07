@@ -8,9 +8,11 @@ if (!isset($_POST['code']) || empty($_POST['code'])) {
 
 $code = $_POST['code'];
 
+$tmp_code_dir = "/tmp/code";
 $code_file = "/tmp/code.php";
 $stdout_file = "/tmp/stdout.log";
 $stderr_file = "/tmp/stderr.log";
+$index_file = "/tmp/code_index";
 
 file_put_contents($code_file, $code);
 
@@ -27,6 +29,16 @@ if ($code) {
 
 	echo json_encode($result);
 }
+
+// 保存临时代码
+$index = intval(trim(file_get_contents($index_file)));
+$index++;
+if ($index>99) $index = 0;
+
+if (!file_exists($tmp_code_dir)) mkdir($tmp_code_dir);
+copy($code_file, $tmp_code_dir . "/" . $index . ".php");
+file_put_contents($index_file, $index);
+
 
 @unlink($code_file);
 @unlink($stdout_file);
