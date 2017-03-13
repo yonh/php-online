@@ -3,12 +3,15 @@ function run() {
 
     $.post('/run.php', params, function(data) {
         console.log(data);
+
+        if (data.result) {
+            $("#view").html("<pre>" +Base64.decode( data.result )+ "</pre>");
+        }
+
         if (data.status == 'success') {
-            $("#view").html("<pre>" + data.result + "</pre>");
             $("#view").removeClass("hidden");
             $("#view").removeClass("failed");
         } else {
-            $("#view").html("<pre>" + data.result + "</pre>");
             $("#view").removeClass("hidden");
             $("#view").addClass("failed");
         }
