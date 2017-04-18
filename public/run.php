@@ -21,9 +21,9 @@ if ($code) {
 	system("bash /opt/run_code.sh", $status_code);
 
 	if ($status_code === 0) {
-		$result['result'] = base64_encode(@file_get_contents($stdout_file));
+		$result['result'] = base64_encode(htmlentities(@file_get_contents($stdout_file)));
 	} else {
-		$result['result'] = base64_encode(@file_get_contents($stderr_file));
+		$result['result'] = base64_encode(htmlentities(@file_get_contents($stderr_file)));
 		$result['status'] = 'failed';
 	}
 	echo json_encode($result);
@@ -39,6 +39,6 @@ copy($code_file, $tmp_code_dir . "/" . $index . ".php");
 file_put_contents($index_file, $index);
 
 
-//@unlink($code_file);
-//@unlink($stdout_file);
-//@unlink($stderr_file);
+@unlink($code_file);
+@unlink($stdout_file);
+@unlink($stderr_file);
