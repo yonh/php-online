@@ -6,6 +6,6 @@
             "email": "azssjli@163.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {}
 }
