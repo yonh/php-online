@@ -2,11 +2,12 @@ version: '2'
 
 services:
   app:
-    build: ./docker
+    container_name: php-online
+    build: .
     ports:
         - "7890:80"
     image: yonh/php-online
     restart: always
-    volumes:
-      - ./public:/www/html
+    #volumes:
+    #  - ./public:/www/html
 
