@@ -1,0 +1,22 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker pull ubuntu:18.04
+
+script:
+  - git check -b build
+  - docker build -t yonh/php-online .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push yonh/php-online
+
+#deploy:
+#  provider: script
+#  script: bash docker_push
+#  on:
+#    branch: master
+
