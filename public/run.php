@@ -18,7 +18,7 @@ file_put_contents($code_file, $code);
 
 if ($code) {
 	$result = array('status'=>'success');
-	system("bash /opt/run_code.sh", $status_code);
+	system("sh /opt/run_code.sh", $status_code);
 
 	if ($status_code === 0) {
 		$result['result'] = base64_encode(htmlentities(@file_get_contents($stdout_file)));

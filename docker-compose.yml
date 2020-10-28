@@ -1,12 +1,18 @@
 version: '2'
-
 services:
   app:
     build: ./docker
     ports:
-        - "7890:80"
+      - "7890:80"
     image: yonh/php-online
     restart: always
     volumes:
-      - ./public:/www/html
+    - .:/app
+    environment:
+    - WEBAPP_ROOT=public
+    networks:
+    - apps
 
+networks:
+  apps:
+    external: true
