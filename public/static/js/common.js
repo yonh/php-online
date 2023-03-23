@@ -6,7 +6,9 @@ function run() {
 
         if (data.result) {
             $("#view").html("<pre>" +Base64.decode( data.result )+ "</pre>");
-        }
+        } else {
+            $("#view").html("<pre></pre>");
+	}
 
         if (data.status == 'success') {
             $("#view").removeClass("hidden");

@@ -1,0 +1,8 @@
+:80 localhost {
+# basicauth /* {
+#}
+ reverse_proxy  php-online:80 {
+   header_up  Host  {upstream_hostport}
+   header_up  X-Forwarded-Host  {host}
+  }
+}

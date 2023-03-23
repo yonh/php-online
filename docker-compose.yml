@@ -2,17 +2,21 @@ version: '2'
 services:
   app:
     build: ./docker
-    ports:
-      - "7890:80"
+    container_name: php-online
     image: yonh/php-online
     restart: always
     volumes:
-    - .:/app
+      - .:/app
     environment:
-    - WEBAPP_ROOT=public
-    networks:
-    - apps
+      - WEBAPP_ROOT=public
 
-networks:
-  apps:
-    external: true
+  caddy:
+    container_name: php-online-caddy
+    image: caddy
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - app

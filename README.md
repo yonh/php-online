@@ -11,8 +11,12 @@ cd public/bower/ace
 npm install
 make build
 
+# caddy 创建访问密码
+caddy hash-password mychatpasswordisempty.|base64
 ```
 访问 http://localhost:7890/ or http://localhost:7890/code.html
+
+
 
 
 
